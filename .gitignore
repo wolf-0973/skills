@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.env
+.env.*
+.skills.env
+screenshot/
+
+.loop-optimize/
