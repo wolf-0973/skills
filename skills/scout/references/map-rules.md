@@ -29,14 +29,43 @@ investigation 写在同一文件 `## Investigations` 下，或 `docs/scout/<slug
 
 ## Investigations
 
-<!-- 每项一个 ## 小节，body 见下 -->
+<!-- 同文件：每项用 ### <title>，字段用 ####；分文件：正文格式见下 -->
 ```
 
 ## Investigation body
 
 每条 investigation 体量适合一个新会话。
+同文件写在 `## Investigations` 下：
 
 ```markdown
+### <title>
+
+#### Question
+
+<本条要解决的决策或调查>
+
+#### Type
+
+research | grilling | chore
+
+#### Status
+
+open | closed
+
+#### Claimed by
+
+None | <agent/user/session>
+
+#### Blocked by
+
+None | <investigation titles>
+```
+
+分文件时写入 `docs/scout/<slug>/<investigation-slug>.md`：
+
+```markdown
+# <title>
+
 ## Question
 
 <本条要解决的决策或调查>

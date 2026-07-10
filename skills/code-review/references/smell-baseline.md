@@ -2,7 +2,7 @@
 
 Repo docs override. Always judgement calls, never hard violations. Skip what tooling already enforces.
 
-**Severity**：破坏行为、契约或 spec → **blocker**；仅可读性 / 结构 / 风格 → **nit**。
+**Severity**：smell 本身大多是 **nit**；若同时破坏行为、契约或 spec，按 [severity.md](severity.md) 升 critical / warning。
 
 - **Mysterious Name** — name doesn't reveal role → rename; if no honest name, design is murky.
 - **Duplicated Code** — same logic shape in more than one place → extract shared shape.

@@ -17,4 +17,4 @@ disable-model-invocation: true
 
 ## Completion
 
-有 `docs/slices` 时：每条 AC 把对应 `- [ ]` 勾成 `- [x]`，或在该 AC 旁写明阻塞原因。无 slices、直做小 spec 时：在小结列出已完成 / 阻塞的 AC（不伪造 slices 文件）。code-review 的 blocker 已修，nit / 新范围提示 `/breakdown`；小结说清改了什么行为、还剩什么风险，并点名下一条 frontier（若有）。Commit 仅在用户明确要求时做。
+有 `docs/slices` 时：每条 AC 把对应 `- [ ]` 勾成 `- [x]`，或在该 AC 旁写明阻塞原因。无 slices、直做小 spec 时：在小结列出已完成 / 阻塞的 AC（不伪造 slices 文件）。只修当前 slice / spec contract 内的 code-review blocker；未决决策回 `/grill`，范围外 finding 提示 `/breakdown`，不顺手实现。小结说清改了什么行为、还剩什么风险，并点名下一条 frontier（若有）。Commit 仅在用户明确要求时做。

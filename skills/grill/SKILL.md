@@ -15,8 +15,8 @@ disable-model-invocation: true
 1. **Frame the tree.** 命名当前要压实的分支（根决策）、它下面的子决策，以及它为什么阻塞后续。若用户给了 `/scout` map，先读 Destination 与 Decisions so far。
 2. **Separate fact from decision.** 事实靠代码、文档、日志或工具查证，查不到就明说「无法证实」并当决策处理；决策交给用户。
 3. **Ask one question.** 每轮只问一个决策问题，附推荐答案与理由；**等用户答完再问下一题**。用户否决时换推荐再问；已闭合决策被新事实推翻则显式重开。
-4. **Update language.** 用户用词与 `CONTEXT.md` 冲突时指出；含糊或过载词提出精确规范词，并**当场写入** `CONTEXT.md`。格式见 [references/CONTEXT-FORMAT.md](references/CONTEXT-FORMAT.md)。
-5. **Record hard decisions.** 提议 ADR 见 [references/ADR-FORMAT.md](references/ADR-FORMAT.md)。
+4. **Update language.** 用户用词与 `CONTEXT.md` 冲突时指出。仅当某词**已造成一次实际误解**、或用户确认为领域术语时，才提出精确规范词并写入 `CONTEXT.md`；普通措辞调整不写。格式见 [references/CONTEXT-FORMAT.md](references/CONTEXT-FORMAT.md)。
+5. **Record hard decisions.** 每项闭合决策逐条检查 ADR 的三条件；全满足则在 handoff 前提议 ADR。格式见 [references/ADR-FORMAT.md](references/ADR-FORMAT.md)。
 6. **Continue or hand off.** 需求大且模糊、单会话装不下 → 提示 `/scout`；可落规格 → 提示 `/to-spec`。**未获用户确认不得 handoff / enact。**
 
 ## Completion
