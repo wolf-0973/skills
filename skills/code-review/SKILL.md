@@ -33,15 +33,17 @@ metadata:
    - **quality** — repo standards + smell + 可维护性
    - **spec** — 对照 spec / 当前 slice AC（仅 spec 存在时 spawn）
 
-   subagent 看不到对话，prompt 必须自带：完整 diff、变更文件列表、standards 原文或路径、spec 路径、该 lens 在 lenses.md 的段落与 [references/severity.md](references/severity.md) 的路径。diff 超大（> ~2000 行）时提示各 lens 只报 critical / warning。
+   subagent 看不到对话，prompt 必须自带：完整 diff、变更文件列表、standards 原文或路径、spec 路径、该 lens 在 lenses.md 的段落与 [references/severity.md](references/severity.md) 的路径。diff 超大（> ~5000 行）时提示各 lens 只报 critical / warning。
 
-4. **Merge & report.** 主 agent 职责仅「合并 + 去重 + 排序」：
-   - findings **逐字保留**，不 second-guess subagent —— 它比你更接近源数据。
+4. **Verify criticals.** 每条 critical finding 并行派一个 verify subagent 证伪（定义见 lenses.md 的 verify 段；输入同 lens：diff + 该条 finding）。verdict 处理：`refuted` → 剔除；`insufficient-evidence` → 降级 warning 并注明；`confirmed` → 保留。warning / nit 不复核。machine lens 的工具报错不复核（exit code 即证据）。
+
+5. **Merge & report.** 主 agent 职责仅「合并 + 去重 + 排序」：
+   - findings **逐字保留**（verify 导致的剔除/降级除外），不 second-guess subagent —— 它比你更接近源数据。
    - 去重仅当 file + line + message 三者全等；剔除 file 不在变更文件列表的条目。
    - 某 lens 崩了 → 该部分 findings 空、报告注明，不放弃整个 review。
    - 按 critical → warning → nit 排序，按下方模板输出。
 
-5. **Offer auto-fix.** 仅对当前 contract 内、建议明确且无歧义的条目，一行询问是否修复；spec 未决或范围外的议题不自动修，提示回 `/grill` 或 `/breakdown`。修完列出实际改动与未修条目。无 findings 不问。
+6. **Offer auto-fix.** 仅对当前 contract 内、建议明确且无歧义的条目，一行询问是否修复；spec 未决或范围外的议题不自动修，提示回 `/grill` 或 `/breakdown`。修完列出实际改动与未修条目。无 findings 不问。
 
 ## Report template
 
@@ -53,7 +55,7 @@ Machine: <check>=pass|fail|skipped …
 
 **Critical N · Warning N · Nit N**
 
-### Critical
+### Critical（已证伪复核）
 1. `file:line`（分类）问题一句 + 为什么严重 + 修复方向
 
 ### Warning
@@ -76,7 +78,7 @@ Machine: <check>=pass|fail|skipped …
 
 ## Completion
 
-报告里必须出现：diff 来源（定点或工作区）、变更文件列表规模、Standards / Spec 来源（或 `no spec`）、每个 lens 的状态（含崩了 / 跳过的）、severity counts 与 verdict。没有 findings 时写 `未发现问题`，不要硬凑。nit 或够一条新 slice 的范围 → 提示 `/breakdown`。
+报告里必须出现：diff 来源（定点或工作区）、变更文件列表规模、Standards / Spec 来源（或 `no spec`）、每个 lens 的状态（含崩了 / 跳过的）、severity counts 与 verdict。报告中的 critical 必须全部经过 verify（被剔除/降级的在报告末尾一行带过）。没有 findings 时写 `未发现问题`，不要硬凑。nit 或够一条新 slice 的范围 → 提示 `/breakdown`。
 
 <!-- SYNC: README.md#产物与回退概述此处的项目级规则承接方式。 -->
 只有同类反馈重复出现，且用户明确确认“以后都这样”或“这是项目级规则”时，才提议向**现有** `AGENTS.md` 添加一条简短规则。不得自动写入，不得复制整条 finding；审查报告始终只在对话内，不落盘。

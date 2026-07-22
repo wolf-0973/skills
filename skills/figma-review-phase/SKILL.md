@@ -6,7 +6,7 @@ license: MIT
 metadata:
   author: wolf
   version: "1.0.0"
-compatibility: Requires Framelink Figma MCP, Chrome DevTools MCP, and a review brief from figma-to-code.
+compatibility: Requires a Figma MCP with screenshot capability, browser screenshot capability (e.g. Chrome DevTools MCP), and a review brief from figma-to-code.
 disable-model-invocation: true
 ---
 
@@ -23,7 +23,7 @@ If required fields are missing, recover only from code evidence, `@figma` file h
 
 ## Capability Gate
 
-1. Confirm Figma screenshot capability; read MCP schema before calling Figma tools.
+1. Confirm Figma screenshot capability (official `get_screenshot` or equivalent).
 2. Confirm browser screenshot capability.
 3. Bring up implementation: probe `devUrl` with `scripts/wait-for-server.mjs`; reuse a responding server, otherwise start `devCommand` and wait. Timeout returns `blocked: dev server not ready`.
 4. Handle auth walls with available dev bypass or pre-auth state; otherwise report `needs_decision: auth required`.
@@ -33,7 +33,7 @@ Completion: both Figma reference and implementation screenshot are available.
 
 ## Review Loop
 
-Run at most 3 rounds by default. If high-impact differences are still obvious, continue up to 5 rounds. Stop after 5 rounds and report the remaining issues.
+Loop until no high-impact differences remain. Stop early when a round produces no real improvement. Hard cap: 5 rounds, then report the remaining issues.
 
 Each round:
 
@@ -46,7 +46,7 @@ Each round:
   - color
   - shadow, radius, icons, image assets
   - responsive viewport details
-4. Select 1-3 highest-impact categories to fix.
+4. Fix the highest-impact differences that can be safely fixed this round.
 5. Modify only visual/display code in the listed files or directly related style/assets files.
 6. Run the relevant lint/typecheck command from the brief or project scripts. Fix failures introduced by this round's changes; leave unrelated pre-existing failures as reported context.
 7. Re-screenshot and reassess.
@@ -83,7 +83,7 @@ Return this summary to the caller:
 
 ```markdown
 Review phase         : pass | partial | blocked (<reason>)
-Fix rounds           : N / 3 | N / 5
+Fix rounds           : N (max 5)
 Screenshots          : Figma <path-or-id> | Implementation <path-or-id>
 Validation           : pass | failed (<command>) | not-run (<reason>)
 Files changed        : <list or "none">

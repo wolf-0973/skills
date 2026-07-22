@@ -9,7 +9,7 @@ metadata:
 
 # TDD（红→绿）
 
-TDD = red → green。下列各节**每个循环都要对照**。读 `CONTEXT.md`（若有）对齐用词，尊重相关 ADR。
+TDD = red → green。下列各节**每个循环都要对照**。读 `CONTEXT.md`（若有）对齐用词。
 
 ## 好测试
 

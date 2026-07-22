@@ -14,7 +14,7 @@ disable-model-invocation: true
 
 1. **Gather context.** 用户给规格路径时读全文；否则从对话归纳 source scope。Completion: source scope and acceptance intent are known.
 
-2. **Explore if needed.** 未探过仓库时读取领域词汇、ADR、同类实现与约束。Completion: domain vocabulary for titles is known, or exploration was skipped because context already had it.
+2. **Explore if needed.** 未探过仓库时读取领域词汇、同类实现与约束。Completion: domain vocabulary for titles is known, or exploration was skipped because context already had it.
 
 3. **Draft slices.** 每条是 **tracer-bullet**。把 spec Testing Decisions 里的 seams 写入对应 slice 的 AC；**Prefactor**（只做准备、不交付新行为）排最前，其 AC = 就绪条件而非用户可见行为。Completion: 每条都有可检查 AC，spec 的每个 seam 都落在某条 slice 上。
 

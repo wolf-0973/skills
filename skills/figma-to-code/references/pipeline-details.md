@@ -26,11 +26,9 @@ node scripts/detect-stack.mjs
 | component | 单组件 frame | root / variants-or-slots / overlays |
 | unknown | 无法判断 | 按节点树列 region，写入 Assumptions |
 
-完成 checklist 前不写代码。
-
 ## Size anchors
 
-代码前至少列 6 项，明确设计稿倍率、CSS 写法、换算公式（Figma px → 代码值）。项目已有换算规则时沿用。
+代码前为 checklist 中影响布局的每个 region 列尺寸锚点，明确设计稿倍率、CSS 写法、换算公式（Figma px → 代码值）。项目已有换算规则时沿用。
 
 | 元素/区域 | 来源节点 | Figma px | 换算后 | 计划 class/token |
 | --------- | -------- | -------- | ------ | ---------------- |
@@ -39,7 +37,7 @@ node scripts/detect-stack.mjs
 
 - 样式映射前查项目现有组件，能复用就复用。
 - Figma → CSS 对照见 [css-mapping.md](css-mapping.md)。
-- 图片资产默认走 [asset-pipeline.md](asset-pipeline.md) 的 Framelink 分支；用户指定 Desktop MCP 时走 Desktop 分支。
+- 图片资产按 [asset-pipeline.md](asset-pipeline.md)，用所连 Figma MCP 的资产导出分支。
 - 使用 Figma 变量、项目 token 或 CSS 变量；只有没有 token 时才使用局部字面量。
 - 无法确认组件 API 时写 TODO 或 `needs_decision`。
 

@@ -16,7 +16,7 @@ disable-model-invocation: true
 
 ## Process
 
-1. **Gather known material.** 读取当前对话、用户给的文档、相关代码、`CONTEXT.md` 与 ADR。先读 scout handoff 给出的 map path；否则试 `docs/scout/<slug>.md` / 对话里的 slug 别名；找到则读 Destination、Decisions so far 与已闭 investigation gist，找不到且用户声称有 map 则停问。开环决策未决则停并回 `/grill`。Completion: problem, solution shape, and constraints are grounded in existing evidence.
+1. **Gather known material.** 读取当前对话、用户给的文档、相关代码与 `CONTEXT.md`。先读 scout handoff 给出的 map path；否则试 `docs/scout/<slug>.md` / 对话里的 slug 别名；找到则读 Destination、Decisions so far 与已闭 investigation gist，找不到且用户声称有 map 则停问。开环决策未决则停并回 `/grill`。Completion: problem, solution shape, and constraints are grounded in existing evidence.
 
 2. **Name the seams.** 草拟本功能要测的公共边界；优先已有 seam，尽量高层。与用户确认后再发布；AFK 时按提议继续，并在 Testing Decisions 标注「assumed, unconfirmed」。
 

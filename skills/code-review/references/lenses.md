@@ -40,6 +40,14 @@
 - 可维护性门槛要**高**：严重重复（同一逻辑 3+ 处）、God function（超长且多个无关职责）、死代码、注释掉的代码块。
 - 不重复 machine 工具已抓的、不越界报 critical 范围（那是 critical lens 的事）。
 
+## verify — critical 证伪复核
+
+不产 findings，只裁决一条已有 critical。输入：完整 diff + 单条 finding。任务：**主动寻找它不成立的证据**——误读 diff、问题已在别处处理（Read 周边源码确认）、场景实际不可达、severity 判高了。找不到反证才算 confirmed。返回 JSON：
+
+```json
+{ "lens": "verify", "verdict": "confirmed|refuted|insufficient-evidence", "reason": "一句依据" }
+```
+
 ## spec — 对照规格
 
 对照 prompt 给的 spec / 当前 slice AC，逐条 AC 核对 diff：
