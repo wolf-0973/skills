@@ -140,7 +140,7 @@ flowchart TD
 | 产物 | 落点 | 维护 |
 | --- | --- | --- |
 | 术语表 + 决策记录（`/grill`） | `CONTEXT.md`（多上下文加 `CONTEXT-MAP.md`） | **长期**，活文档；术语变了就更新，决策被推翻就改写那一行 |
-| 项目级协作规则（`/code-review` 反馈升格） | 现有 `AGENTS.md` | **长期**；仅同类反馈重复且用户明确确认为项目级规则后提议，绝不自动写 |
+| 项目级协作规则（`/code-review` 反馈升格） | 现有 `AGENTS.md` | **长期**；仅同类问题重复且用户明确确认为项目级规则后提议，以「场景 + 禁止 X，改用 Y」一行落入，绝不自动写 |
 | 规格（`/to-spec`） | `docs/spec/<slug>.md` | 临时，做完即过期，用户按需删 |
 | slice（`/breakdown`） | `docs/slices/<slug>.md` | 临时，同上 |
 | 探路图（`/scout`） | `docs/scout/<slug>.md`（多文件用 `docs/scout/<slug>/`） | 临时，雾散尽后决策吸收进规格 |
