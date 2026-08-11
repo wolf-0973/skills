@@ -4,7 +4,7 @@
   "groupings": [
     {
       "title": "工程",
-      "description": "开发工作流：探路(scout) / 追问(grill) → 写规格(to-spec) → 拆 slice(breakdown) → 实现(implement) → 审查(code-review)。tdd 为横切辅助 skill。",
+      "description": "开发工作流：探路(scout) / 追问(grill) → 写规格(to-spec) → 拆 slice(breakdown) → 实现(implement) → 审查(code-review)。bug 与性能回归走 diagnose；tdd 为横切辅助 skill。",
       "skills": [
         "grill",
         "scout",
@@ -12,6 +12,7 @@
         "breakdown",
         "implement",
         "code-review",
+        "diagnose",
         "tdd"
       ]
     },

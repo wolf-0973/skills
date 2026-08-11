@@ -93,13 +93,22 @@ None | <investigation titles>
 
 | Type | Mode | 含义 |
 |------|------|------|
-| research | AFK | 查一手资料，纪要作附件 |
+| research | AFK | 查一手资料，纪要作附件；可并行派子代理 |
 | grilling | HITL | 与人追问；可调 `/grill`。人负责决策 |
 | chore | HITL/AFK | 探路时要人手动做、但不产代码的杂活：开通权限、申请测试账号、找人要资料。做完才能继续往下判断 |
 
+## Research 子代理 brief
+
+派 research 子代理时 prompt 必须自带这四条（它看不到对话）：
+
+1. 要回答的那一个问题（该 investigation 的 Question 原文）。
+2. **只信一手来源**——官方文档、源码、规范、第一方 API，不采信二手转述；每条论断追到拥有它的那个来源。
+3. 每条论断附来源（URL 或 `file:line`）；查不到就写「未找到一手来源」，不要用推测填空。
+4. 纪要写回该 investigation 正文（或 `docs/scout/<slug>/` 下同名文件），不写进对话就算没交付。
+
 ## Frontier
 
-`Status: open` + blockers all closed + `Claimed by: None`.
+`Status: open` + blockers all closed + `Claimed by: None`——即依赖已满足、现在就能开工的那一批。
 
 ## Fog vs investigation
 

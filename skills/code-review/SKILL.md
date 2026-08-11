@@ -78,7 +78,7 @@ Machine: <check>=pass|fail|skipped …
 
 ## Completion
 
-报告里必须出现：diff 来源（定点或工作区）、变更文件列表规模、Standards / Spec 来源（或 `no spec`）、每个 lens 的状态（含崩了 / 跳过的）、severity counts 与 verdict。报告中的 critical 必须全部经过 verify（被剔除/降级的在报告末尾一行带过）。没有 findings 时写 `未发现问题`，不要硬凑。nit 或够一条新 slice 的范围 → 提示 `/breakdown`。
+报告里必须出现：diff 来源（定点或工作区）、变更文件列表规模、Standards / Spec 来源（或 `no spec`）、每个 lens 的状态（含崩了 / 跳过的）、severity counts 与 verdict。报告中的 critical 必须全部经过 verify（被剔除/降级的在报告末尾一行带过）。没有 findings 时写 `未发现问题`，不要硬凑。nit 或够一条新 slice 的范围 → 提示 `/breakdown`；critical 指向一个成因未明的 bug（不是这批改动直接引入的）→ 提示 `/diagnose`，别在报告里猜原因。
 
 <!-- SYNC: README.md#产物与回退概述此处的项目级规则承接方式。 -->
 只有同类反馈重复出现，且用户明确确认“以后都这样”或“这是项目级规则”时，才提议向**现有** `AGENTS.md` 添加一条简短规则。不得自动写入，不得复制整条 finding；审查报告始终只在对话内，不落盘。

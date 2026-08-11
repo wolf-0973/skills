@@ -35,9 +35,12 @@
 
 ## quality — standards + 可维护性
 
+只报**作者从这条 slice 内部看不见的**——这是本 lens 存在的理由：
+
 - 对照 prompt 给的 repo standards 来源逐条检查，违反明文规范 → warning。
-- 套用 [smell-baseline.md](smell-baseline.md)，大多数 → nit。
-- 可维护性门槛要**高**：严重重复（同一逻辑 3+ 处）、God function（超长且多个无关职责）、死代码、注释掉的代码块。
+- 偏离 repo 既有抽象（已有共享 util / 组件 / hook，新代码另写一套）、跨文件重复、与 diff 外代码的不一致 → warning。
+- 套用 [smell-baseline.md](smell-baseline.md) 里跨文件 / 跨模块的条目（Shotgun Surgery、Divergent Change、Duplicated Code 等），大多数 → nit。
+- 单文件内的命名、小重复、God function 这类红→绿循环里本该顺手清的：**不逐条报**；成堆出现（同一文件 3+ 处）才汇总成一条 nit，指出该文件需要一轮清理。
 - 不重复 machine 工具已抓的、不越界报 critical 范围（那是 critical lens 的事）。
 
 ## verify — critical 证伪复核
